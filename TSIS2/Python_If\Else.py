@@ -71,3 +71,5 @@ b = 200
 
 if b > a:
   pass 
+if b < a:
+  print("NO")
