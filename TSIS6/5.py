@@ -4,7 +4,7 @@ x = x + ".txt"
 #create
 f1 = open(x, 'x')
 list_ex = [i for i in range(10)]
-
+#here we also have writelines() Method
 #write
 for i in list_ex:
     with open(x, 'w') as file:
