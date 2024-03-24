@@ -6,7 +6,7 @@ import time
 pygame.init()
 
 # Установка размеров окна
-WIDTH, HEIGHT = 400, 200
+WIDTH, HEIGHT = 2560, 1000
 WINDOW_SIZE = (WIDTH, HEIGHT)
 WHITE = (255, 255, 255)
 
