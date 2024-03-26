@@ -1,31 +1,43 @@
 import pygame
 
 pygame.init()
-screen = pygame.display.set_mode((400, 300))
-done = False
-is_blue = True
-x = 30
-y = 30
 
-clock = pygame.time.Clock()
+quality = (1940, 1000)
+surface = pygame.display.set_mode((quality))
+name_pro = pygame.display.set_caption("Circle")
 
-while not done:
-        for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                        done = True
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                        is_blue = not is_blue
-        
-        pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_UP]: y -= 3
-        if pressed[pygame.K_DOWN]: y += 3
-        if pressed[pygame.K_LEFT]: x -= 3
-        if pressed[pygame.K_RIGHT]: x += 3
-        
-        screen.fill((0, 0, 0))
-        if is_blue: color = (0, 128, 255)
-        else: color = (255, 100, 0)
-        pygame.draw.rect(screen, color, pygame.Rect(x, y, 60, 60))
-        
-        pygame.display.flip()
-        clock.tick(60)
+white = (255,255,255)
+red = (255,0,0)
+
+center_w = quality[0] // 2
+center_h = quality[1] // 2
+run = True
+FPS = 60
+tickrate = pygame.time.Clock()
+
+x = center_w
+y = center_h
+
+while run == True:
+    surface.fill(white)
+
+    history_press = pygame.key.get_pressed()
+    if history_press[pygame.K_UP] == True and y >= 41:
+        y -= 20
+    if history_press[pygame.K_LEFT] == True and x >= 41:
+        x -= 20
+    if history_press[pygame.K_RIGHT] == True and x <= 1900:
+        x += 20
+    if history_press[pygame.K_DOWN] == True and y <= 950:
+        y += 20
+
+    pygame.draw.circle(surface , red, (x, y), 25)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    pygame.display.update()
+    tickrate.tick(FPS)
+
+pygame.quit()
