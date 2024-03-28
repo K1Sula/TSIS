@@ -3,7 +3,7 @@ import random
 
 pygame.init()
 
-width, height = 1080, 1300
+width, height = 1080, 1000
 
 surface = pygame.display.set_mode((width, height))
 road_game = pygame.image.load("image/road.png")
@@ -11,7 +11,7 @@ road_game = pygame.image.load("image/road.png")
 pygame.display.set_caption("Racer")
 
 run = True
-FPS = 40
+FPS = 60
 
 # Predefined some colors
 BLUE  = (0, 0, 255)
@@ -28,7 +28,7 @@ class Enemy(pygame.sprite.Sprite):
         super().__init__() 
         self.image = pygame.image.load("image/yellow_car.png")
         self.image = pygame.transform.scale(self.image, (100, 200))  # Resize the enemy image
-        self.image = rotation_image(self.image, 90)
+        self.image = rotation_image(self.image, 270)
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), 0) 
  
@@ -48,14 +48,14 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (100, 200))  # Resize the player image
         self.image = rotation_image(self.image, 90)
         self.rect = self.image.get_rect()
-        self.rect.center = (160, 520)
+        self.rect.center = (420, 520)
  
     def update(self):
         pressed_keys = pygame.key.get_pressed()
-        if self.rect.left > 0:
+        if self.rect.left > 130:
             if pressed_keys[pygame.K_LEFT]:
                 self.rect.move_ip(-15, 0)
-        if self.rect.right < width:        
+        if self.rect.right < width - 130:        
             if pressed_keys[pygame.K_RIGHT]:
                 self.rect.move_ip(15, 0)
  
