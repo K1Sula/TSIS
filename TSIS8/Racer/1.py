@@ -27,7 +27,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load("image/yellow_car.png")
-        self.image = pygame.transform.scale(self.image, (100, 200))  # Resize the enemy image
+        self.image = pygame.transform.scale(self.image, (200, 200))  # Resize the enemy image
         self.image = rotation_image(self.image, 270)
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, width-40), 0) 
@@ -45,10 +45,11 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load("image/blue_car.png")
-        self.image = pygame.transform.scale(self.image, (100, 200))  # Resize the player image
+        #here first write width after heigth but my image top look on right so why i firstly write height 200 after width 200
+        self.image = pygame.transform.scale(self.image, (200, 200))  # Resize the player image
         self.image = rotation_image(self.image, 90)
         self.rect = self.image.get_rect()
-        self.rect.center = (420, 520)
+        self.rect.center = (420, 750)
  
     def update(self):
         pressed_keys = pygame.key.get_pressed()
