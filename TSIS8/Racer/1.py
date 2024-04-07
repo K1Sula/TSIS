@@ -59,6 +59,9 @@ class Player(pygame.sprite.Sprite):
         if self.rect.right < width - 130:        
             if pressed_keys[pygame.K_RIGHT]:
                 self.rect.move_ip(15, 0)
+                
+    class coin(pygame.sprite.Sprite):
+        pass
  
     def draw(self, surface):
         surface.blit(self.image, self.rect)     
