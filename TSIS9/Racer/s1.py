@@ -63,7 +63,7 @@ class Coin(pygame.sprite.Sprite):
         super().__init__()
         self.weight, self.image_path = random.choice(WEIGHTED_COINS)
         self.image = pygame.image.load(self.image_path)
-        self.image = pygame.transform.scale(self.image, (77, 77))
+        self.image = pygame.transform.scale(self.image, (88, 88))
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(135, WIDTH - 135), 0)
     
