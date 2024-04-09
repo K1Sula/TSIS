@@ -9,7 +9,7 @@ surface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Snake Game")
 
 # Game parameters
-FPS = 10  # Увеличим FPS для более плавной анимации
+FPS = 10 
 RUN = True
 SCORE = 0
 LEVEL = 1

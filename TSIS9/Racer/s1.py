@@ -49,7 +49,7 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (200, 140))
         self.image = rotation_p(self.image, 270)
         self.rect = self.image.get_rect()
-        self.rect.center = (random.randint(135, WIDTH - 135), 0)
+        self.rect.center = (random.randint(140, WIDTH - 140), 0)
 
     def move(self):
         self.rect.y += SPEED
