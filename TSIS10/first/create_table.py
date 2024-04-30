@@ -5,6 +5,22 @@ def create_tables():
     """ Create tables in the PostgreSQL database"""
     commands = (
         """
+        CREATE TABLE "user" (
+            user_id SERIAL PRIMARY KEY,
+            username VARCHAR(255) UNIQUE NOT NULL,
+            level INTEGER DEFAULT 1
+        )
+        """,
+        """
+        CREATE TABLE user_score (
+            score_id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES "user" (user_id) ON DELETE CASCADE,
+            score INTEGER NOT NULL,
+            level INTEGER NOT NULL,
+            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+        """,
+        """
         CREATE TABLE contacts (
             contact_id SERIAL PRIMARY KEY,
             first_name VARCHAR(100) NOT NULL,
@@ -13,28 +29,13 @@ def create_tables():
             email VARCHAR(255),
             address VARCHAR(255)
         )
-        """,
-        """
-        CREATE TABLE groups (
-            group_id SERIAL PRIMARY KEY,
-            group_name VARCHAR(100) NOT NULL
-        )
-        """,
-        """
-        CREATE TABLE contact_groups (
-            contact_id INTEGER NOT NULL,
-            group_id INTEGER NOT NULL,
-            PRIMARY KEY (contact_id, group_id),
-            FOREIGN KEY (contact_id) REFERENCES contacts (contact_id) ON DELETE CASCADE,
-            FOREIGN KEY (group_id) REFERENCES groups (group_id) ON DELETE CASCADE
-        )
         """
     )
     try:
         config = load_config()
         with psycopg2.connect(**config) as conn:
             with conn.cursor() as cur:
-                # execute the CREATE TABLE statement
+                # execute the CREATE TABLE statements
                 for command in commands:
                     cur.execute(command)
     except (psycopg2.DatabaseError, Exception) as error:
